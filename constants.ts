@@ -1,7 +1,7 @@
 
 import { Project, Experience, Skill } from './types';
 
-export const ENGINEER_NAME = "Destiny Gogo-fyneface";
+export const ENGINEER_NAME = "Destiny G.";
 export const ENGINEER_ROLE = "Senior AI & Machine Learning Engineer";
 export const BIO = "Architecting the next generation of intelligent systems. Specialized in Large Language Models, Multi-agent workflows, and Scalable MLOps. Currently pushing boundaries at the intersection of Generative AI and production engineering.";
 
