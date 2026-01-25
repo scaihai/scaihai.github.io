@@ -1,15 +1,31 @@
 
-export interface Particle {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-  color: string;
+export interface Project {
+  id: string;
+  title: string;
+  description: string;
+  longDescription: string;
+  techStack: string[];
+  imageUrl: string;
+  githubUrl?: string;
+  demoUrl?: string;
+  metrics?: { label: string; value: string }[];
 }
 
-export interface OracleMessage {
-  text: string;
-  timestamp: number;
-  author: 'user' | 'oracle';
+export interface Experience {
+  id: string;
+  company: string;
+  role: string;
+  period: string;
+  achievements: string[];
+}
+
+export interface Skill {
+  name: string;
+  level: number;
+  category: 'ML/DL' | 'Engineering' | 'Tools' | 'Soft Skills';
+}
+
+export interface Message {
+  role: 'user' | 'assistant';
+  content: string;
 }

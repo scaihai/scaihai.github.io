@@ -1,198 +1,136 @@
 
-import React, { useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { ChevronDown, Globe, Menu, X, ArrowRight, Github, Linkedin, Mail } from 'lucide-react';
-import ParticleBackground from './components/ParticleBackground';
-import FloatingCards from './components/FloatingCards';
-import Credentials from './components/Credentials';
+import React from 'react';
+import Navbar from './components/Navbar';
+import ProjectCard from './components/ProjectCard';
+import ExperienceTimeline from './components/ExperienceTimeline';
+import SkillGrid from './components/SkillGrid';
+import { PROJECTS, ENGINEER_NAME, ENGINEER_ROLE, BIO } from './constants';
 
 const App: React.FC = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9]);
-  
-  const navItems = [
-    { label: 'Skills', href: '#skills' },
-    { label: 'Credentials', href: '#credentials' },
-    { label: 'Contact', href: '#contact' }
-  ];
-
   return (
-    <div className="min-h-screen selection:bg-blue-500 selection:text-white overflow-hidden bg-[#030303] text-white">
-      <ParticleBackground />
+    <div className="min-h-screen bg-black selection:bg-violet-500/30">
+      <Navbar />
       
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 px-6 py-8 flex justify-between items-center bg-gradient-to-b from-black/80 to-transparent backdrop-blur-sm md:backdrop-blur-none">
-        <div className="flex items-center space-x-3">
-          <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center border border-white/10 shadow-lg shadow-blue-500/20">
-            <span className="font-display font-bold text-white text-lg">DG</span>
-          </div>
-          <div className="hidden sm:block">
-            <span className="font-display font-bold text-xl tracking-tight block">DESTINY GOGO</span>
-            <span className="text-[10px] text-blue-400 uppercase tracking-widest font-bold">AI Engineer • Liverpool</span>
-          </div>
-        </div>
-        
-        <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
-          {navItems.map((item) => (
-            <a key={item.label} href={item.href} className="text-white/60 hover:text-white transition-colors">
-              {item.label}
-            </a>
-          ))}
-          <div className="flex items-center space-x-4 border-l border-white/10 pl-8">
-            <a href="https://github.com/scaihai" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-              <Github size={18} />
-            </a>
-            <a href="https://www.linkedin.com/in/destiny-gogo/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">
-              <Linkedin size={18} />
-            </a>
-            <a href="mailto:scaihai@gmail.com" className="bg-white text-black px-5 py-2 rounded-full font-bold hover:bg-blue-400 hover:text-white transition-all transform hover:scale-105 flex items-center gap-2">
-              Connect <Mail size={14} />
-            </a>
-          </div>
-        </div>
-
-        <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          {isMenuOpen ? <X /> : <Menu />}
-        </button>
-      </nav>
-
-      {/* Mobile Menu */}
-      {isMenuOpen && (
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-2xl p-8 flex flex-col items-center justify-center space-y-8"
-        >
-          <button className="absolute top-8 right-8" onClick={() => setIsMenuOpen(false)}>
-            <X className="w-8 h-8" />
-          </button>
-          {navItems.map((item) => (
-            <a key={item.label} href={item.href} onClick={() => setIsMenuOpen(false)} className="text-4xl font-display font-bold">
-              {item.label}
-            </a>
-          ))}
-          <div className="flex gap-8 pt-8 border-t border-white/10 w-full justify-center">
-            <a href="https://github.com/scaihai" target="_blank" rel="noopener noreferrer"><Github size={32} /></a>
-            <a href="https://www.linkedin.com/in/destiny-gogo/" target="_blank" rel="noopener noreferrer"><Linkedin size={32} /></a>
-            <a href="mailto:scaihai@gmail.com"><Mail size={32} /></a>
-          </div>
-        </motion.div>
-      )}
-
       {/* Hero Section */}
-      <header className="relative h-screen flex flex-col items-center justify-center text-center px-4">
-        <motion.div style={{ opacity, scale }} className="max-w-4xl relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <span className="inline-block px-4 py-1 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-xs font-bold tracking-widest mb-6 uppercase">
-              Transitioning: Java Backend ➔ AI Architect
+      <section id="hero" className="min-h-screen flex flex-col justify-center items-center px-4 relative overflow-hidden pt-20">
+        <div className="absolute top-1/4 -left-20 w-96 h-96 bg-violet-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div className="max-w-5xl mx-auto text-center z-10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold text-violet-400 mb-8 animate-subtle-float">
+            <span className="relative flex h-2 w-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
             </span>
-          </motion.div>
-          
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-6xl md:text-8xl lg:text-9xl font-display font-extrabold mb-8 bg-gradient-to-b from-white to-white/30 bg-clip-text text-transparent leading-[0.9]"
-          >
-            SOTA<br/>ENGINEER
-          </motion.h1>
-          
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg md:text-2xl text-white/50 mb-10 max-w-2xl mx-auto leading-relaxed"
-          >
-            I'm Destiny. I merge enterprise Java reliability with the bleeding edge of Artificial Intelligence. Based in Liverpool, building for the future.
-          </motion.p>
-          
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-col md:flex-row items-center justify-center gap-4"
-          >
-            <a href="#contact" className="w-full md:w-auto px-10 py-4 bg-white text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_rgba(59,130,246,0.5)] transition-all flex items-center justify-center gap-2 group">
+            OPEN FOR OPPORTUNITIES
+          </div>
+          <h1 className="text-5xl md:text-8xl font-bold tracking-tighter mb-6 bg-gradient-to-b from-white via-white to-white/40 bg-clip-text text-transparent leading-none pb-2">
+            Architecting<br />Intelligent Systems
+          </h1>
+          <p className="text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-10 leading-relaxed">
+            {BIO}
+          </p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href="#projects" className="bg-white text-black px-8 py-4 rounded-full font-bold hover:scale-105 active:scale-95 transition-all">
+              View Work
+            </a>
+            <a href="mailto:scaihai@gmail.com" className="glass text-white px-8 py-4 rounded-full font-bold hover:bg-white/10 active:scale-95 transition-all">
               Get in Touch
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </a>
-            <a href="https://github.com/scaihai" target="_blank" rel="noopener noreferrer" className="w-full md:w-auto px-10 py-4 bg-white/5 border border-white/10 text-white rounded-full font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-md">
-              View Source
-            </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
-        <motion.div 
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
-        >
-          <ChevronDown className="w-8 h-8 text-white/20" />
-        </motion.div>
-
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[120px] pointer-events-none" />
-      </header>
-
-      {/* Stats Section */}
-      <section className="relative z-10 py-32 border-y border-white/5 bg-black/50 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          {[
-            { label: "Java Experience", value: "8+ Yrs" },
-            { label: "AI Specialist", value: "SOTA" },
-            { label: "Location", value: "Liverpool" },
-            { label: "Code Quality", value: "99.9%" },
-          ].map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <h4 className="text-4xl md:text-5xl font-display font-bold text-white mb-2">{stat.value}</h4>
-              <p className="text-white/40 text-sm uppercase tracking-widest font-bold">{stat.label}</p>
-            </motion.div>
-          ))}
+        {/* Scroll Indicator */}
+        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30 hover:opacity-100 transition-opacity">
+          <span className="text-[10px] uppercase tracking-widest font-bold">Scroll</span>
+          <div className="w-px h-12 bg-gradient-to-b from-violet-500 to-transparent"></div>
         </div>
       </section>
 
-      {/* Skills */}
-      <FloatingCards />
-
-      {/* Credentials (Education & Certifications) */}
-      <Credentials />
-
-      {/* Footer Contact */}
-      <footer id="contact" className="relative z-10 py-24 px-8 border-t border-white/5 bg-gradient-to-b from-transparent to-black">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl md:text-6xl font-display font-bold mb-8">Let's build intelligence together.</h2>
-          <p className="text-white/40 text-xl mb-12">I'm currently open to new opportunities in AI Engineering and advanced system architecture.</p>
+      {/* Projects Section */}
+      <section id="projects" className="py-24 px-4 bg-[#050505]">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-4">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-bold tracking-tight mb-4">Selected Work</h2>
+              <p className="text-zinc-500 max-w-md">Highlighting the intersection of deep learning research and production engineering.</p>
+            </div>
+            <div className="h-px bg-white/10 flex-1 mx-8 hidden md:block mb-4"></div>
+            <div className="text-sm font-mono text-zinc-500 mb-2">01 / PROJECTS</div>
+          </div>
           
-          <div className="flex flex-wrap justify-center gap-6 mb-16">
-            <a href="mailto:scaihai@gmail.com" className="flex items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-white hover:text-black transition-all">
-              <Mail size={20} /> scaihai@gmail.com
-            </a>
-            <a href="https://linkedin.com/in/destiny-gogo/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-[#0077b5] hover:text-white transition-all">
-              <Linkedin size={20} /> LinkedIn
-            </a>
-            <a href="https://github.com/scaihai" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-8 py-4 bg-white/5 border border-white/10 rounded-full hover:bg-[#333] hover:text-white transition-all">
-              <Github size={20} /> GitHub
-            </a>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {PROJECTS.map(project => (
+              <ProjectCard key={project.id} project={project} />
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="flex items-center justify-center space-x-2 text-white/20 text-sm border-t border-white/5 pt-12">
-            <span className="font-display font-bold tracking-tighter">DESTINY GOGO-FYNEFACE</span>
-            <span>•</span>
-            <span>LIVERPOOL, UK</span>
-            <span>•</span>
-            <span>2024</span>
+      {/* Skills & Experience */}
+      <section id="experience" className="py-24 px-4">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          <div className="lg:col-span-7">
+             <div className="mb-12">
+               <h2 className="text-4xl font-bold mb-4">Experience</h2>
+               <p className="text-zinc-500">A journey through neural networks and software architectures.</p>
+             </div>
+             <ExperienceTimeline />
           </div>
+          
+          <div className="lg:col-span-5 space-y-16" id="skills">
+            <div>
+              <div className="mb-12">
+                <h2 className="text-4xl font-bold mb-4">Stack</h2>
+                <p className="text-zinc-500">Tools of the trade.</p>
+              </div>
+              <SkillGrid />
+            </div>
+            
+            <div className="glass p-8 rounded-3xl space-y-4 glow-purple border-violet-500/20">
+              <h3 className="text-xl font-bold flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-violet-400"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                Core Philosophy
+              </h3>
+              <p className="text-zinc-400 text-sm italic">
+                "Simple code is reliable code. I believe AI shouldn't just be 'intelligent', but explainable and efficient at its core."
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer / Contact */}
+      <footer id="contact" className="py-24 px-4 bg-[#0a0a0a] border-t border-white/5 relative overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-px bg-gradient-to-r from-transparent via-violet-500 to-transparent"></div>
+        
+        <div className="max-w-4xl mx-auto text-center space-y-12 relative z-10">
+          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter">Let's build the <span className="text-violet-500">future</span> together.</h2>
+          <div className="flex flex-col md:flex-row justify-center items-center gap-8">
+            <a href="mailto:scaihai@gmail.com" className="text-2xl md:text-3xl font-medium hover:text-violet-400 transition-colors underline decoration-violet-500 underline-offset-8">
+              scaihai@gmail.com
+            </a>
+            <div className="flex gap-6">
+              {[
+                { name: 'LinkedIn', url: 'https://www.linkedin.com/in/destiny-gogo/' },
+                { name: 'GitHub', url: 'https://github.com/scaihai' },
+                { name: 'X', url: 'https://x.com/scaihai' }
+              ].map((social) => (
+                <a 
+                  key={social.name} 
+                  href={social.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-zinc-500 hover:text-white transition-colors text-lg"
+                >
+                  {social.name}
+                </a>
+              ))}
+            </div>
+          </div>
+          <p className="text-zinc-600 text-sm mt-20 pt-10 border-t border-white/5">
+            © 2026 {ENGINEER_NAME}. Built with React, and Tailwind.
+          </p>
         </div>
       </footer>
     </div>
