@@ -1,0 +1,5 @@
+{
+  "name": "Portfolio Rebalancer AI",
+  "description": "A dark-themed intelligent portfolio rebalancing tool that calculates the optimal swaps to align your holdings with your target allocation.",
+  "requestFramePermissions": []
+}
