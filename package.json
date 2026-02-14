@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run build:week && npm run build:rebalancer",
-    "build:week": "cd apps/week && npm install && npm run build",
+    "build": "vite build && npm run build:rebalancer && npm run build:limit-prices",
     "build:rebalancer": "cd apps/rebalancer && npm install && npm run build",
+    "build:limit-prices": "cd apps/limit-prices && npm install && npm run build",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -b main -r https://github.com/scaihai/scaihai.github.io.git"
