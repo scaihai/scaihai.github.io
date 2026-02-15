@@ -23,6 +23,8 @@ export const calculateRebalancing = (portfolio: PortfolioState): CalculationResu
       currentTokenBAllocation: 0,
       sellTokenBPrice: 0,
       buyTokenBPrice: 0,
+      sellTokenBAmount: 0,
+      buyTokenBAmount: 0,
       isDrifted: false,
       driftDirection: 'balanced'
     };
@@ -37,7 +39,7 @@ export const calculateRebalancing = (portfolio: PortfolioState): CalculationResu
   const upperLimitAlloc = targetAlloc + thresholdDecimal; 
   const lowerLimitAlloc = targetAlloc - thresholdDecimal; 
 
-  // Formula derivation:
+  // Formula derivation for Prices:
   // TargetWeight = (H * Ph) / (H * Ph + U * Pu)
   // ... where H is Token B, U is Token A
   // Ph = (TargetWeight * U * Pu) / (H * (1 - TargetWeight))
@@ -45,7 +47,6 @@ export const calculateRebalancing = (portfolio: PortfolioState): CalculationResu
   // Price to SELL Token B (when allocation hits Upper Limit)
   // We cap upper limit at 0.99 to avoid division by zero
   const safeUpper = Math.min(upperLimitAlloc, 0.99);
-  // Avoid division by zero if tokenBAmount is 0
   const sellTokenBPrice = tokenBAmount > 0 
     ? (safeUpper * tokenAAmount * tokenAPrice) / (tokenBAmount * (1 - safeUpper))
     : 0;
@@ -56,6 +57,29 @@ export const calculateRebalancing = (portfolio: PortfolioState): CalculationResu
   const buyTokenBPrice = tokenBAmount > 0
     ? (safeLower * tokenAAmount * tokenAPrice) / (tokenBAmount * (1 - safeLower))
     : 0;
+
+  // Calculate Quantities to trade to return to Target Allocation
+  // At the trigger price, Total Value changes. We calculate the amount of Token B needed to equal Target Allocation.
+  
+  // 1. Sell Scenario (Price goes UP to sellTokenBPrice)
+  let sellTokenBAmount = 0;
+  if (sellTokenBPrice > 0) {
+    const totalValueAtTrigger = (tokenAAmount * tokenAPrice) + (tokenBAmount * sellTokenBPrice);
+    // At this point, we are at UpperLimit. We want to get back to TargetAlloc.
+    const targetValueB = totalValueAtTrigger * targetAlloc;
+    const targetAmountB = targetValueB / sellTokenBPrice;
+    sellTokenBAmount = Math.max(0, tokenBAmount - targetAmountB);
+  }
+
+  // 2. Buy Scenario (Price goes DOWN to buyTokenBPrice)
+  let buyTokenBAmount = 0;
+  if (buyTokenBPrice > 0) {
+    const totalValueAtTrigger = (tokenAAmount * tokenAPrice) + (tokenBAmount * buyTokenBPrice);
+    // At this point, we are at LowerLimit. We want to get back to TargetAlloc.
+    const targetValueB = totalValueAtTrigger * targetAlloc;
+    const targetAmountB = targetValueB / buyTokenBPrice;
+    buyTokenBAmount = Math.max(0, targetAmountB - tokenBAmount);
+  }
 
   let driftDirection: 'overweight' | 'underweight' | 'balanced' = 'balanced';
   if (currentTokenBAllocation > upperLimitAlloc) driftDirection = 'overweight';
@@ -68,6 +92,8 @@ export const calculateRebalancing = (portfolio: PortfolioState): CalculationResu
     currentTokenBAllocation,
     sellTokenBPrice,
     buyTokenBPrice,
+    sellTokenBAmount,
+    buyTokenBAmount,
     isDrifted: driftDirection !== 'balanced',
     driftDirection
   };

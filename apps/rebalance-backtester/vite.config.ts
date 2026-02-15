@@ -5,9 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/apps/rebalancer/',
+      base: '/apps/rebalance-backtester/',
       build: {
-        outDir: '../../dist/apps/rebalancer',
+        outDir: '../../dist/apps/rebalance-backtester',
         emptyOutDir: true,
       },
       server: {

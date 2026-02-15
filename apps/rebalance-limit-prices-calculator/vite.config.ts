@@ -5,9 +5,9 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
     return {
-      base: '/apps/limit-prices/',
+      base: '/apps/rebalance-limit-prices-calculator/',
       build: {
-        outDir: '../../dist/apps/limit-prices',
+        outDir: '../../dist/apps/rebalance-limit-prices-calculator',
         emptyOutDir: true,
       },
       server: {

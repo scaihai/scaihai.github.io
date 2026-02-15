@@ -16,6 +16,8 @@ export interface CalculationResult {
   currentTokenBAllocation: number; // 0 to 1
   sellTokenBPrice: number; // Price to hit upper bound
   buyTokenBPrice: number; // Price to hit lower bound
+  sellTokenBAmount: number; // Amount to sell to return to target at trigger price
+  buyTokenBAmount: number; // Amount to buy to return to target at trigger price
   isDrifted: boolean;
   driftDirection: 'overweight' | 'underweight' | 'balanced';
 }

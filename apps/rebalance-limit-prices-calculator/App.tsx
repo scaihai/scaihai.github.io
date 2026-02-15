@@ -61,6 +61,9 @@ const App: React.FC = () => {
   const formatPrice = (val: number) => 
     val < 1 ? val.toFixed(4) : val.toFixed(2);
 
+  const formatAmount = (val: number) =>
+    val.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 4 });
+
   const targetTokenA = 100 - portfolio.targetTokenBPercentage;
   const minBand = portfolio.targetTokenBPercentage - portfolio.threshold;
   const maxBand = portfolio.targetTokenBPercentage + portfolio.threshold;
@@ -320,12 +323,14 @@ const App: React.FC = () => {
                   <span className="text-sm font-mono text-gray-400 mt-1">{minBand.toFixed(1)}% {portfolio.tokenBName}</span>
                </div>
                
-               <div className="text-lg text-gray-300 mb-2 font-medium">Buy {portfolio.tokenBName} at</div>
+               <div className="text-lg text-gray-300 mb-2 font-medium">
+                  Buy <span className="text-white font-bold">{formatAmount(results.buyTokenBAmount)}</span> {portfolio.tokenBName} at
+               </div>
                <div className="text-5xl font-bold text-brand-400 tracking-tight font-mono">
                   ${formatPrice(results.buyTokenBPrice)}
                </div>
                <div className="mt-6 text-sm text-gray-400 border-t border-brand-500/20 pt-4 font-medium">
-                  If price drops to this level, allocation falls to {minBand.toFixed(1)}%. Buy to rebalance.
+                  If price drops to this level, allocation falls to {minBand.toFixed(1)}%. Buy to return to target.
                </div>
             </div>
 
@@ -345,12 +350,14 @@ const App: React.FC = () => {
                   <span className="text-sm font-mono text-gray-400 mt-1">{maxBand.toFixed(1)}% {portfolio.tokenBName}</span>
                </div>
                
-               <div className="text-lg text-gray-300 mb-2 font-medium">Sell {portfolio.tokenBName} at</div>
+               <div className="text-lg text-gray-300 mb-2 font-medium">
+                  Sell <span className="text-white font-bold">{formatAmount(results.sellTokenBAmount)}</span> {portfolio.tokenBName} at
+               </div>
                <div className="text-5xl font-bold text-orange-400 tracking-tight font-mono">
                   ${formatPrice(results.sellTokenBPrice)}
                </div>
                <div className="mt-6 text-sm text-gray-400 border-t border-orange-500/20 pt-4 font-medium">
-                  If price rises to this level, allocation hits {maxBand.toFixed(1)}%. Sell to rebalance.
+                  If price rises to this level, allocation hits {maxBand.toFixed(1)}%. Sell to return to target.
                </div>
             </div>
 

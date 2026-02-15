@@ -1,0 +1,5 @@
+{
+  "name": "RebalSim",
+  "description": "A cryptocurrency portfolio rebalancing simulator. Visualize how threshold-based rebalancing strategies affect total equity over time compared to holding.",
+  "requestFramePermissions": []
+}
