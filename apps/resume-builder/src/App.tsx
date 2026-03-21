@@ -391,12 +391,12 @@ export default function App() {
             </p>
             
             <div className="flex flex-wrap gap-x-6 gap-y-3 mt-6 text-[11px] font-mono text-zinc-500">
-              {data.personalInfo.email && <div className="flex items-center gap-2"><Mail size={12} /> {data.personalInfo.email}</div>}
-              {data.personalInfo.phone && <div className="flex items-center gap-2"><Phone size={12} /> {data.personalInfo.phone}</div>}
+              {data.personalInfo.email && <a href={`mailto:${data.personalInfo.email}`} className="flex items-center gap-2 hover:text-zinc-900 transition-colors"><Mail size={12} /> {data.personalInfo.email}</a>}
+              {data.personalInfo.phone && <a href={`tel:${data.personalInfo.phone}`} className="flex items-center gap-2 hover:text-zinc-900 transition-colors"><Phone size={12} /> {data.personalInfo.phone}</a>}
               {data.personalInfo.location && <div className="flex items-center gap-2"><MapPin size={12} /> {data.personalInfo.location}</div>}
-              {data.personalInfo.website && <div className="flex items-center gap-2"><Globe size={12} /> {data.personalInfo.website}</div>}
-              {data.personalInfo.github && <div className="flex items-center gap-2"><Github size={12} /> {data.personalInfo.github}</div>}
-              {data.personalInfo.linkedin && <div className="flex items-center gap-2"><Linkedin size={12} /> {data.personalInfo.linkedin}</div>}
+              {data.personalInfo.website && <a href={data.personalInfo.website.startsWith('http') ? data.personalInfo.website : `https://${data.personalInfo.website}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-zinc-900 transition-colors"><Globe size={12} /> {data.personalInfo.website}</a>}
+              {data.personalInfo.github && <a href={data.personalInfo.github.startsWith('http') ? data.personalInfo.github : `https://${data.personalInfo.github}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-zinc-900 transition-colors"><Github size={12} /> {data.personalInfo.github}</a>}
+              {data.personalInfo.linkedin && <a href={data.personalInfo.linkedin.startsWith('http') ? data.personalInfo.linkedin : `https://${data.personalInfo.linkedin}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-zinc-900 transition-colors"><Linkedin size={12} /> {data.personalInfo.linkedin}</a>}
             </div>
           </header>
 
