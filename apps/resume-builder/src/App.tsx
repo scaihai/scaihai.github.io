@@ -487,7 +487,16 @@ export default function App() {
                   <div key={proj.id}>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
                       <h3 className="text-[15px] font-semibold text-zinc-900">{proj.name}</h3>
-                      {proj.link && <span className="text-[11px] font-mono text-zinc-500 mt-1 sm:mt-0">{proj.link}</span>}
+                      {proj.link && (
+                        <a 
+                          href={proj.link.startsWith('http') ? proj.link : `https://${proj.link}`} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="text-[11px] font-mono text-zinc-500 mt-1 sm:mt-0 hover:text-zinc-900 transition-colors"
+                        >
+                          {proj.link}
+                        </a>
+                      )}
                     </div>
                     <p className="text-[13px] text-zinc-600 leading-relaxed">
                       {proj.description}
