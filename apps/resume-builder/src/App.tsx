@@ -237,7 +237,7 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-zinc-100 font-sans selection:bg-zinc-200">
+    <div className="flex h-screen overflow-hidden bg-zinc-100 font-sans selection:bg-zinc-200 print:h-auto print:overflow-visible print:block">
       
       {/* Sidebar Builder */}
       <div className="w-full max-w-md bg-white border-r border-zinc-200 flex flex-col h-full print:hidden z-10 shadow-lg">
@@ -377,9 +377,9 @@ export default function App() {
       </div>
 
       {/* Preview Area */}
-      <div className="flex-1 overflow-auto p-4 sm:p-8 bg-zinc-100 print:p-0 print:bg-white flex justify-center items-start">
+      <div className="flex-1 overflow-auto p-4 sm:p-8 bg-zinc-100 print:p-0 print:bg-white print:overflow-visible flex justify-center items-start print:block">
         {/* A4 Container */}
-        <div className="bg-white shadow-xl print:shadow-none w-[210mm] min-h-[297mm] p-12 sm:p-16 print:p-0 shrink-0 relative overflow-hidden">
+        <div className="bg-white shadow-xl print:shadow-none w-[210mm] min-h-[297mm] p-12 sm:p-16 print:p-0 shrink-0 relative overflow-hidden print:overflow-visible print:w-full print:min-h-0 print:mx-auto">
           
           {/* Header */}
           <header className="mb-10">
