@@ -486,15 +486,30 @@ export default function App() {
                 {data.projects.map((proj) => (
                   <div key={proj.id}>
                     <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-1">
-                      <h3 className="text-[15px] font-semibold text-zinc-900">{proj.name}</h3>
+                      <h3 className="text-[15px] font-semibold text-zinc-900">
+                        {proj.link ? (
+                          <a 
+                            href={proj.link.startsWith('http') ? proj.link : `https://${proj.link}`} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className="hover:underline underline-offset-2 inline-flex items-center gap-1"
+                          >
+                            {proj.name}
+                            <ExternalLink size={14} className="text-zinc-400" />
+                          </a>
+                        ) : (
+                          proj.name
+                        )}
+                      </h3>
+                      {/* Optional: Keeps the raw link text on the right side on larger screens */}
                       {proj.link && (
                         <a 
                           href={proj.link.startsWith('http') ? proj.link : `https://${proj.link}`} 
                           target="_blank" 
                           rel="noopener noreferrer" 
-                          className="text-[11px] font-mono text-zinc-500 mt-1 sm:mt-0 hover:text-zinc-900 transition-colors"
+                          className="text-[11px] font-mono text-zinc-500 mt-1 sm:mt-0 hover:text-zinc-900 transition-colors hidden sm:block"
                         >
-                          {proj.link}
+                          {proj.link.replace(/^https?:\/\//, '')}
                         </a>
                       )}
                     </div>
