@@ -8,6 +8,7 @@ import {
   User, GraduationCap, Briefcase, Wrench, FolderGit2, Award, MoreHorizontal,
   ChevronDown, ChevronRight, Plus, Trash2, Mail, Phone, MapPin, Globe, Github, Linkedin, Printer, ExternalLink
 } from 'lucide-react';
+import qrCodeImage from './QR_scaihai.github.io.png';
 
 const INITIAL_DATA = {
   personalInfo: {
@@ -402,10 +403,16 @@ export default function App() {
 
           {/* Summary */}
           {data.personalInfo.summary && (
-            <section className="mb-10">
-              <p className="text-[13px] text-zinc-600 leading-relaxed">
-                {data.personalInfo.summary}
-              </p>
+            <section className="mb-10 flex gap-8 items-start">
+              <div className="flex-1">
+                <p className="text-[13px] text-zinc-600 leading-relaxed">
+                  {data.personalInfo.summary}
+                </p>
+              </div>
+              <div className="shrink-0 flex flex-col items-center gap-2">
+                <img src={qrCodeImage} alt="QR Code" className="w-24 h-24 border border-zinc-200 rounded-md" />
+                <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">Portfolio</p>
+              </div>
             </section>
           )}
 
