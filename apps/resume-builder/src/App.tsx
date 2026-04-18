@@ -20,7 +20,8 @@ const INITIAL_DATA = {
     website: "alexchen.dev",
     github: "github.com/alexc",
     linkedin: "linkedin.com/in/alexchen",
-    summary: "Staff Software Engineer with 8+ years of experience architecting distributed systems and leading high-performance teams. Specialized in cloud-native infrastructure, Go, and React. Proven track record of scaling platforms to handle millions of concurrent users while reducing operational costs."
+    summary: "Staff Software Engineer with 8+ years of experience architecting distributed systems and leading high-performance teams. Specialized in cloud-native infrastructure, Go, and React. Proven track record of scaling platforms to handle millions of concurrent users while reducing operational costs.",
+    showQR: true
   },
   experience: [
     {
@@ -172,7 +173,7 @@ export default function App() {
     localStorage.setItem('resumeData', JSON.stringify(data));
   }, [data]);
 
-  const updatePersonalInfo = (field: string, value: string) => {
+  const updatePersonalInfo = (field: string, value: string | boolean) => {
     setData(prev => ({ ...prev, personalInfo: { ...prev.personalInfo, [field]: value } }));
   };
 
@@ -268,6 +269,16 @@ export default function App() {
             <Input label="GitHub" value={data.personalInfo.github} onChange={(v: string) => updatePersonalInfo('github', v)} />
             <Input label="LinkedIn" value={data.personalInfo.linkedin} onChange={(v: string) => updatePersonalInfo('linkedin', v)} />
             <Textarea label="Professional Summary" value={data.personalInfo.summary} onChange={(v: string) => updatePersonalInfo('summary', v)} rows={5} />
+            <div className="mb-3 flex items-center gap-2">
+              <input 
+                type="checkbox" 
+                id="showQR"
+                checked={data.personalInfo.showQR} 
+                onChange={(e) => updatePersonalInfo('showQR', e.target.checked)} 
+                className="rounded border-zinc-200"
+              />
+              <label htmlFor="showQR" className="text-[10px] font-bold text-zinc-500 uppercase tracking-wider cursor-pointer">Show QR Code</label>
+            </div>
           </AccordionItem>
 
           {/* Education */}
@@ -409,10 +420,12 @@ export default function App() {
                   {data.personalInfo.summary}
                 </p>
               </div>
-              <div className="shrink-0 flex flex-col items-center gap-2">
-                <img src={qrCodeImage} alt="QR Code" className="w-24 h-24 border border-zinc-200 rounded-md" />
-                <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">Portfolio</p>
-              </div>
+              {data.personalInfo.showQR && (
+                <div className="shrink-0 flex flex-col items-center gap-2">
+                  <img src={qrCodeImage} alt="QR Code" className="w-24 h-24 border border-zinc-200 rounded-md" />
+                  <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">Portfolio</p>
+                </div>
+              )}
             </section>
           )}
 
