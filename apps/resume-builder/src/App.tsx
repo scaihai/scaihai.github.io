@@ -284,8 +284,8 @@ export default function App() {
           {/* Education */}
           <AccordionItem title="Education" icon={GraduationCap} isOpen={openSection === 'education'} onToggle={() => setOpenSection(openSection === 'education' ? null : 'education')}>
             {data.education.map((edu) => (
-              <div key={edu.id} className="mb-6 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative group">
-                <button onClick={() => removeArrayItem('education', edu.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 size={16} /></button>
+              <div key={edu.id} className="mb-6 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative">
+                <button onClick={() => removeArrayItem('education', edu.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                 <Input label="Institution" value={edu.institution} onChange={(v: string) => updateArrayItem('education', edu.id, 'institution', v)} />
                 <Input label="Degree" value={edu.degree} onChange={(v: string) => updateArrayItem('education', edu.id, 'degree', v)} />
                 <div className="grid grid-cols-2 gap-3">
@@ -303,8 +303,8 @@ export default function App() {
           {/* Experience */}
           <AccordionItem title="Experience" icon={Briefcase} isOpen={openSection === 'experience'} onToggle={() => setOpenSection(openSection === 'experience' ? null : 'experience')}>
             {data.experience.map((exp) => (
-              <div key={exp.id} className="mb-6 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative group">
-                <button onClick={() => removeArrayItem('experience', exp.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 size={16} /></button>
+              <div key={exp.id} className="mb-6 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative">
+                <button onClick={() => removeArrayItem('experience', exp.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                 <Input label="Company" value={exp.company} onChange={(v: string) => updateArrayItem('experience', exp.id, 'company', v)} />
                 <Input label="Role" value={exp.role} onChange={(v: string) => updateArrayItem('experience', exp.id, 'role', v)} />
                 <div className="grid grid-cols-2 gap-3">
@@ -337,8 +337,8 @@ export default function App() {
           {/* Skillsets */}
           <AccordionItem title="Skillsets" icon={Wrench} isOpen={openSection === 'skills'} onToggle={() => setOpenSection(openSection === 'skills' ? null : 'skills')}>
             {data.skills.map((skill) => (
-              <div key={skill.id} className="mb-4 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative group">
-                <button onClick={() => removeArrayItem('skills', skill.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 size={16} /></button>
+              <div key={skill.id} className="mb-4 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative">
+                <button onClick={() => removeArrayItem('skills', skill.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                 <Input label="Category" value={skill.category} onChange={(v: string) => updateArrayItem('skills', skill.id, 'category', v)} placeholder="e.g. Languages" />
                 <Textarea label="Items" value={skill.items} onChange={(v: string) => updateArrayItem('skills', skill.id, 'items', v)} placeholder="e.g. JavaScript, TypeScript, React" rows={2} />
               </div>
@@ -351,8 +351,8 @@ export default function App() {
           {/* Projects */}
           <AccordionItem title="Projects" icon={FolderGit2} isOpen={openSection === 'projects'} onToggle={() => setOpenSection(openSection === 'projects' ? null : 'projects')}>
             {data.projects.map((proj) => (
-              <div key={proj.id} className="mb-4 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative group">
-                <button onClick={() => removeArrayItem('projects', proj.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 size={16} /></button>
+              <div key={proj.id} className="mb-4 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative">
+                <button onClick={() => removeArrayItem('projects', proj.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                 <Input label="Project Name" value={proj.name} onChange={(v: string) => updateArrayItem('projects', proj.id, 'name', v)} />
                 <Input label="Link (Optional)" value={proj.link} onChange={(v: string) => updateArrayItem('projects', proj.id, 'link', v)} />
                 <Textarea label="Description" value={proj.description} onChange={(v: string) => updateArrayItem('projects', proj.id, 'description', v)} rows={3} />
@@ -366,8 +366,8 @@ export default function App() {
           {/* Certifications */}
           <AccordionItem title="Certifications" icon={Award} isOpen={openSection === 'certifications'} onToggle={() => setOpenSection(openSection === 'certifications' ? null : 'certifications')}>
             {data.certifications.map((cert) => (
-              <div key={cert.id} className="mb-4 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative group">
-                <button onClick={() => removeArrayItem('certifications', cert.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"><Trash2 size={16} /></button>
+              <div key={cert.id} className="mb-4 p-4 bg-zinc-50 border border-zinc-200 rounded-lg relative">
+                <button onClick={() => removeArrayItem('certifications', cert.id)} className="absolute top-3 right-3 text-zinc-400 hover:text-red-500 transition-colors"><Trash2 size={16} /></button>
                 <Input label="Certification Name" value={cert.name} onChange={(v: string) => updateArrayItem('certifications', cert.id, 'name', v)} />
                 <Input label="Issuer" value={cert.issuer} onChange={(v: string) => updateArrayItem('certifications', cert.id, 'issuer', v)} />
                 <Input label="Date" value={cert.date} onChange={(v: string) => updateArrayItem('certifications', cert.id, 'date', v)} />
