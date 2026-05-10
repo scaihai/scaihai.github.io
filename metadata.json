@@ -1,8 +1,6 @@
 {
-  "name": "AI Engineer Portfolio - SOTA Edition",
-  "description": "A high-performance, visually stunning portfolio for a Senior AI Engineer, featuring an interactive Gemini-powered assistant to answer questions about the engineer's background, skills, and projects.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
+  "name": "AI Engineer Portfolio",
+  "description": "A state-of-the-art portfolio website for an AI Engineer featuring a light theme, modern typography, and smooth animations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": []
 }
