@@ -416,7 +416,7 @@ export default function App() {
           {data.personalInfo.summary && (
             <section className="mb-10 flex gap-8 items-start">
               <div className="flex-1">
-                <p className="text-[13px] text-zinc-600 leading-relaxed">
+                <p className="text-[13px] text-zinc-600 leading-relaxed text-justify">
                   {data.personalInfo.summary}
                 </p>
               </div>
