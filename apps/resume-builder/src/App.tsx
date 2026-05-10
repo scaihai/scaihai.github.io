@@ -422,7 +422,18 @@ export default function App() {
               </div>
               {data.personalInfo.showQR && (
                 <div className="shrink-0 flex flex-col items-center gap-2">
-                  <img src={qrCodeImage} alt="QR Code" className="w-24 h-24 border border-zinc-200 rounded-md" />
+                  {data.personalInfo.website ? (
+                    <a 
+                      href={data.personalInfo.website.startsWith('http') ? data.personalInfo.website : `https://${data.personalInfo.website}`} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="transition-opacity hover:opacity-80"
+                    >
+                      <img src={qrCodeImage} alt="QR Code" className="w-24 h-24 border border-zinc-200 rounded-md" />
+                    </a>
+                  ) : (
+                    <img src={qrCodeImage} alt="QR Code" className="w-24 h-24 border border-zinc-200 rounded-md" />
+                  )}
                   <p className="text-[10px] font-mono text-zinc-600 uppercase tracking-wider">Portfolio</p>
                 </div>
               )}
