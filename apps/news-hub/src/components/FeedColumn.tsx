@@ -45,6 +45,24 @@ export function FeedColumn({ topic, onRemove, refreshKey = 0, markAllReadTrigger
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  useEffect(() => {
+    if (!showConfirm) return;
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setShowConfirm(false);
+      } else if (e.key === "Enter") {
+        onRemove(topic);
+        setShowConfirm(false);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [showConfirm, topic, onRemove]);
+
   const fetchFeed = async () => {
     setLoading(true);
     setError("");
@@ -115,7 +133,36 @@ export function FeedColumn({ topic, onRemove, refreshKey = 0, markAllReadTrigger
   }, [topic, refreshKey]);
 
   return (
-    <div className="flex flex-col h-full bg-neutral-900 rounded-xl shadow-sm border border-neutral-800 overflow-hidden shrink-0 w-[85vw] sm:w-[350px] lg:w-auto lg:flex-1 lg:min-w-0 snap-center">
+    <div className="flex flex-col h-full bg-neutral-900 rounded-xl shadow-sm border border-neutral-800 overflow-hidden shrink-0 w-[85vw] sm:w-[350px] lg:w-auto lg:flex-1 lg:min-w-0 snap-center relative">
+      {/* Confirmation Dialog Overlay */}
+      {showConfirm && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black/70 backdrop-blur-sm z-50 p-4 animate-fade-in">
+          <div className="bg-neutral-900 border border-neutral-800 rounded-xl max-w-sm w-full p-6 shadow-2xl space-y-4 animate-scale-in">
+            <h3 className="text-lg font-semibold text-white">Unfollow Topic</h3>
+            <p className="text-sm text-neutral-400 leading-relaxed">
+              Are you sure you want to unfollow <span className="text-blue-400 font-medium">"{topic}"</span>?
+            </p>
+            <div className="flex justify-end gap-3 pt-2">
+              <button
+                onClick={() => setShowConfirm(false)}
+                className="px-4 py-2 text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 rounded-lg transition-colors border border-neutral-800"
+              >
+                Cancel
+              </button>
+              <button
+                onClick={() => {
+                  onRemove(topic);
+                  setShowConfirm(false);
+                }}
+                className="px-4 py-2 text-sm font-medium text-white bg-red-600 hover:bg-red-500 rounded-lg transition-colors shadow-sm"
+              >
+                Unfollow
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Column Header */}
       <div className="flex items-center justify-between p-4 border-b border-neutral-800 bg-neutral-900/80 backdrop-blur-sm sticky top-0 z-10">
         <h2 className="text-lg font-semibold text-white truncate" title={topic}>
@@ -131,7 +178,7 @@ export function FeedColumn({ topic, onRemove, refreshKey = 0, markAllReadTrigger
             <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
           </button>
           <button
-            onClick={() => onRemove(topic)}
+            onClick={() => setShowConfirm(true)}
             className="p-1.5 text-neutral-400 hover:text-red-400 hover:bg-red-950/30 rounded-md transition-colors"
             title="Remove topic"
           >
