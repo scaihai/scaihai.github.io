@@ -91,7 +91,11 @@ export function FeedColumn({ topic, onRemove, refreshKey = 0, markAllReadTrigger
           pubDate: item.pubDate || "",
           content: item.description || "",
           source: item.author || "Google News",
-        }));
+        })).sort((a: any, b: any) => {
+          const dateA = a.pubDate ? new Date(a.pubDate).getTime() : 0;
+          const dateB = b.pubDate ? new Date(b.pubDate).getTime() : 0;
+          return dateB - dateA;
+        });
 
         setData({
           title: topic,
@@ -208,8 +212,8 @@ function NewsCard({ item, index, total, isUnread, onMarkRead }: { item: FeedItem
       onClick={onMarkRead}
       className={`block group rounded-lg p-4 transition-all duration-200 cursor-pointer relative ${
         isUnread
-          ? "bg-neutral-900 border border-blue-500/40 hover:border-blue-400 shadow-[0_0_15px_-3px_rgba(59,130,246,0.1)]"
-          : "bg-neutral-900/40 border border-neutral-800/80 hover:border-neutral-700 opacity-80 hover:opacity-100"
+          ? "bg-neutral-900 border border-blue-500/50 hover:border-blue-400 shadow-[0_0_15px_-3px_rgba(59,130,246,0.15)]"
+          : "bg-neutral-900/70 border border-neutral-800 hover:border-neutral-700 opacity-95 hover:opacity-100"
       }`}
     >
       {isUnread && (
@@ -220,20 +224,20 @@ function NewsCard({ item, index, total, isUnread, onMarkRead }: { item: FeedItem
       )}
       <div className="flex flex-col gap-2">
         <h3 className={`font-medium leading-snug transition-colors ${
-          isUnread ? "text-neutral-100 group-hover:text-blue-400" : "text-neutral-400 group-hover:text-neutral-200"
+          isUnread ? "text-white group-hover:text-blue-400" : "text-neutral-300 group-hover:text-white"
         }`}>
           {cleanTitle}
         </h3>
         
         <div className={`flex items-center mt-2 pt-3 gap-2 text-xs border-t w-full overflow-hidden transition-colors ${
-          isUnread ? "border-neutral-800 text-neutral-500" : "border-neutral-800/50 text-neutral-500/80"
+          isUnread ? "border-neutral-800 text-neutral-400" : "border-neutral-800/60 text-neutral-400/80"
         }`}>
-          <span className={`font-semibold truncate min-w-0 flex-1 ${isUnread ? "text-neutral-400" : "text-neutral-500"}`}>
+          <span className={`font-semibold truncate min-w-0 flex-1 ${isUnread ? "text-neutral-300" : "text-neutral-400"}`}>
             {sourceName}
           </span>
           <div className="flex items-center gap-1.5 shrink-0 ml-auto">
             <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded ${
-              isUnread ? "bg-neutral-800 text-neutral-400" : "bg-neutral-900/50 text-neutral-500"
+              isUnread ? "bg-neutral-800 text-neutral-300" : "bg-neutral-900/50 text-neutral-400"
             }`}>
               {index}/{total}
             </span>
