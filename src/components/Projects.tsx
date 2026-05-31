@@ -13,7 +13,7 @@ const PROJECTS = [
     title: "MedExpert",
     description: "A clinical question-answering system for medical practitioners, utilizing Retrieval Augmented Generation (RAG). Implements a fine-tuned ClinicalBERT model, Qdrant vector database, and a custom SQuAD dataset.",
     tags: ["Python", "PyTorch", "RAG", "Hugging Face"],
-    github: "#projects",
+    github: "https://github.com/scaihai/ai-med-expert",
     demo: "https://med-expert.enkwadore.com/"
   },
   // {
@@ -64,7 +64,7 @@ export default function Projects() {
                   <a href={project.demo} target="_blank">{project.title}</a>
                 </h3>
                 <div className="flex gap-3 text-gray-400">
-                  <a href={project.github} className="hover:text-black transition-colors">
+                  <a href={project.github} target="_blank" className="hover:text-black transition-colors">
                     <Github className="w-5 h-5" />
                   </a>
                   <a href={project.demo} target="_blank" className="hover:text-black transition-colors">

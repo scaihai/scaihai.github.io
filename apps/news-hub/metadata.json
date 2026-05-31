@@ -1,0 +1,6 @@
+{
+  "name": "News Hub",
+  "description": "A multi-column news aggregator powered by Google News RSS feeds.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
