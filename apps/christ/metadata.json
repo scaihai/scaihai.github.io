@@ -1,0 +1,6 @@
+{
+  "name": "Historical Christianity Investigator",
+  "description": "An interactive, evidence-based exploration of Christianity, analyzing Old Testament prophecies, empty tomb logistics, and historical eyewitness accounts.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

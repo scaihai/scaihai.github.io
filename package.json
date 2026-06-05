@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && npm run build:backtester && npm run build:swaps-calc && npm run build:limit-prices-calc && npm run build:resume-builder && npm run build:news-hub",
+    "build": "vite build && npm run build:backtester && npm run build:swaps-calc && npm run build:limit-prices-calc && npm run build:resume-builder && npm run build:news-hub && npm run build:christ",
     "build:backtester": "cd apps/rebalance-backtester && npm install && npm run build",
     "build:swaps-calc": "cd apps/rebalance-swaps-calculator && npm install && npm run build",
     "build:limit-prices-calc": "cd apps/rebalance-limit-prices-calculator && npm install && npm run build",
     "build:resume-builder": "cd apps/resume-builder && npm install && npm run build",
     "build:news-hub": "cd apps/news-hub && npm run build",
+    "build:christ": "cd apps/christ && npm install && npm run build",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist -b main -r https://github.com/scaihai/scaihai.github.io.git"
