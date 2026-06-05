@@ -479,7 +479,7 @@ export default function App() {
                 {/* Signature Blockquote */}
                 <div className="bg-[#FAF9F5] border-l-4 border-[#9A7D46] p-6 rounded-r-2xl mt-8">
                   <p className="font-serif italic text-[14px] md:text-[15px] text-stone-800 leading-relaxed">
-                    "I find that my own inquiry intersects with the first four categories. While internal convictions and spiritual experiences are deeply personal and subjective, the historical and philosophical dimensions provide a framework that can be independently and objectively investigated. This platform does not claim that Christianity is the sole true religion, but rather invites seekers and thinkers to examine early Christian claims under standard historical and academic evidence."
+                    "I find that my reason for being a Christian intersects with the first four categories. While internal convictions and spiritual experiences are deeply personal and subjective, the historical and philosophical dimensions provide a framework that can be independently and objectively investigated. This platform does not claim that Christianity is the sole true religion, but rather invites seekers and thinkers to examine early Christian claims under standard historical and academic evidence."
                   </p>
                   <div className="text-right mt-3 text-xs font-mono tracking-widest text-[#9A7D46] uppercase font-bold select-none">
                     — Destiny Gogo-fyneface
